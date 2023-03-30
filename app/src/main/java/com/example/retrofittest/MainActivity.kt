@@ -36,8 +36,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+
                     MovieList(mainViewModel.movieList)
-                    mainViewModel.getMovieList()
+                    try {
+                        mainViewModel.getMovieList()
+                    }
+                    catch (e : Exception) {
+
+                    }
                 }
             }
         }
