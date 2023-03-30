@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.example.retrofittest.ui.theme.RetrofittestTheme
 
 class MainActivity : ComponentActivity() {
-    val mainViewModel by viewModels<MainViewModel>()
+    val mainViewModel by viewModels<CatViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,17 +37,18 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
 
-                    MovieList(mainViewModel.movieList)
-                    try {
-                        mainViewModel.getMovieList()
-                    }
-                    catch (e : Exception) {
+                    mainViewModel.getFact()
+                    Fact(fact = mainViewModel.fact)
 
-                    }
                 }
             }
         }
     }
+}
+
+@Composable
+fun Fact( fact : Cat) {
+    Text(fact.fact)
 }
 
 @Composable
