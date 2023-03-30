@@ -1,5 +1,6 @@
 package com.example.retrofittest
 
+import android.widget.Toast
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -12,9 +13,14 @@ interface ApiService {
         var apiService : ApiService? = null
         fun getInstance() : ApiService {
             if(apiService == null) {
-                apiService = Retrofit.Builder().baseUrl("https://www.howtodoandroid.com/apis/")
-                    .addConverterFactory(GsonConverterFactory.create()).build()
-                    .create(ApiService :: class.java)
+                try {
+                    apiService = Retrofit.Builder().baseUrl("https://www.howtodoandroid.com/apis/")
+                        .addConverterFactory(GsonConverterFactory.create()).build()
+                        .create(ApiService::class.java)
+                }
+                catch (e : Exception) {
+
+                }
             }
             return apiService !!
         }
